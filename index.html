@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>نظرية الألوان والتصميم</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800&family=Lalezar&family=EB+Garamond:ital@0;1&family=Libre+Baskerville&family=Bodoni+Moda&family=Montserrat:ital,wght@0,400;0,800;1,400;1,800&family=Playfair+Display:wght@700&family=Josefin+Sans&family=Noto+Naskh+Arabic&family=Aref+Ruqaa&family=Katibeh&family=Noto+Nastaliq+Urdu&display=swap">
+<style>
+:root{--bg:#fff;--card:#F6F7FB;--ink:#111827;--mut:#4B5563;--o:#FF9A1F;--od:#B14A00;--line:#E5E7EB;--ok:#12805C;--bad:#C0392B;box-sizing:border-box}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#111318;--card:#1B1F29;--ink:#F3F4F6;--mut:#B6BDCB;--line:#2C3342;--od:#FFB870;--ok:#4CD1A0;--bad:#FF8A7A}}
+:root[data-theme="dark"]{--bg:#111318;--card:#1B1F29;--ink:#F3F4F6;--mut:#B6BDCB;--line:#2C3342;--od:#FFB870;--ok:#4CD1A0;--bad:#FF8A7A}
+*{box-sizing:border-box;margin:0}
+html{height:100%}
+body{background:var(--bg);color:var(--ink);font:400 20px/1.9 Cairo,Tahoma,sans-serif;min-height:100%;padding-top:env(safe-area-inset-top,0px);padding-bottom:calc(74px + env(safe-area-inset-bottom,0px))}
+#bar{position:fixed;top:0;inset-inline:0;height:6px;background:var(--line);z-index:9}
+#pg{display:block;height:100%;width:0;background:var(--o);transition:width .3s}
+.s{max-width:1080px;margin:auto;padding:36px 22px}
+.s[hidden]{display:none}
+.hd{font:400 clamp(36px,6.5vw,64px)/1.7 Lalezar,Cairo;background:linear-gradient(transparent 55%,var(--o) 55%,var(--o) 90%,transparent 90%);padding:0 12px;display:inline}
+.sub{margin:18px 0 8px;font-weight:800;font-size:26px}
+p{color:var(--mut);margin:8px 0}
+b{color:var(--ink)}
+.row{display:flex;gap:22px;flex-wrap:wrap;align-items:flex-start;margin-top:18px}
+.row>*{flex:1 1 300px;min-width:0}
+.card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:18px 22px}
+button,.ch{font:inherit;cursor:pointer}
+.ch{border:2px solid var(--line);background:var(--bg);color:var(--ink);border-radius:999px;padding:2px 18px;font-weight:600;font-size:18px;display:inline-block}
+.ch[aria-pressed=true]{border-color:var(--o);background:color-mix(in srgb,var(--o) 22%,var(--bg))}
+.chs{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}
+:focus-visible{outline:3px solid var(--o);outline-offset:2px}
+.sw{display:flex;gap:10px;flex-wrap:wrap}
+.sw span{width:60px;height:60px;border-radius:14px;border:1px solid var(--line);cursor:pointer;display:block}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;max-width:300px}
+.g3 span{height:78px;border-radius:8px;cursor:pointer}
+.hex{direction:ltr;font-weight:800;font-size:20px;text-align:center;color:var(--ink)}
+input[type=range]{width:100%;accent-color:var(--o);height:34px}
+.sl{display:flex;justify-content:space-between;font-weight:600;font-size:18px}
+.hero{min-height:70vh;display:flex;flex-direction:column;justify-content:center}
+.hero h1{font:400 clamp(48px,11vw,110px)/1.4 Lalezar,Cairo}
+.q{font-weight:800;color:var(--ink);font-size:24px}
+.opts{display:grid;gap:8px;margin:10px 0}
+.opts button{text-align:start;border:2px solid var(--line);background:var(--bg);color:var(--ink);border-radius:14px;padding:6px 16px;font-size:19px}
+.opts .right{border-color:var(--ok);background:color-mix(in srgb,var(--ok) 18%,var(--bg))}
+.opts .wrong{border-color:var(--bad);background:color-mix(in srgb,var(--bad) 15%,var(--bg))}
+.fb{min-height:2em;font-weight:600;color:var(--ink)}
+.pal{display:flex;border-radius:16px;overflow:hidden;margin:12px 0}
+.pal div{flex:1;height:84px;display:flex;align-items:flex-end;justify-content:center;padding-bottom:6px;font:800 13px Cairo;direction:ltr;color:#fff;text-shadow:0 1px 3px #000a;cursor:pointer}
+#whl{position:relative;width:min(320px,100%);aspect-ratio:1;border-radius:50%;margin:auto;cursor:crosshair;touch-action:none;background:radial-gradient(circle,#fff 0,#fff0 68%),conic-gradient(hsl(0 100% 50%),hsl(30 100% 50%),hsl(60 100% 50%),hsl(90 100% 50%),hsl(120 100% 50%),hsl(150 100% 50%),hsl(180 100% 50%),hsl(210 100% 50%),hsl(240 100% 50%),hsl(270 100% 50%),hsl(300 100% 50%),hsl(330 100% 50%),hsl(360 100% 50%))}
+#whl i{position:absolute;width:26px;height:26px;border-radius:50%;border:4px solid #fff;box-shadow:0 0 0 2px #000;transform:translate(-50%,-50%)}
+.rgbv{position:relative;width:min(300px,100%);aspect-ratio:1;background:#000;border-radius:22px;margin:auto;isolation:isolate}
+.rgbv i{position:absolute;width:58%;aspect-ratio:1;border-radius:50%;mix-blend-mode:screen}
+.paper{background:#fff;color:#111;border-radius:14px;padding:16px 20px}
+.spec{border:2px solid var(--line);border-radius:18px;padding:10px 20px;margin-top:10px}
+.spec small{display:block;color:var(--mut);font:400 16px/1.6 Cairo}
+.big{font-size:32px;line-height:1.8;direction:ltr;text-align:left}
+input[type=text]{font:inherit;width:100%;border:2px solid var(--line);border-radius:14px;padding:4px 14px;background:var(--bg);color:var(--ink)}
+input[type=color]{width:56px;height:44px;border:2px solid var(--line);border-radius:10px;background:var(--bg)}
+.mock{background:#fff;color:#14213D;border-radius:18px;padding:16px;max-width:340px;margin:auto;font-size:15px;line-height:1.5}
+.mock .t{font-size:15px;color:#9aa0ad}.mock .l{font-size:13px;color:#b5bac5}
+.mock .f{border:1px solid #c9cdd6;border-radius:6px;padding:4px 8px;color:#b5bac5;margin-bottom:3px}
+.mock .go{border:0;background:#DADDE3;color:#B8BCC6;border-radius:4px;padding:3px 12px;font-size:13px;margin-top:2px}
+.mock.a .t{font-size:26px;font-weight:800;color:#14213D}
+.mock.a .go{background:#FF7A1A;color:#14213D;font-weight:800;border-radius:12px;padding:12px;width:100%;font-size:18px}
+.mock.b .f{padding:10px 12px;margin-bottom:14px}.mock.b .l{margin:10px 0 4px}
+.mock.c .f,.mock.c .l,.mock.c .go{color:#14213D}.mock.c .f{border-color:#14213D}
+.mock.sq{filter:blur(5px)}
+.tg label{display:flex;gap:12px;align-items:center;cursor:pointer;font-weight:600;margin:6px 0}
+.tg input{width:22px;height:22px;accent-color:var(--o)}
+#al{position:relative;width:240px;height:250px;margin:auto;background:#fff;border:1px solid var(--line);border-radius:10px}
+#al div{position:absolute;background:#8d9099;border-radius:2px}
+#al u{position:absolute;background:#FF9A1F;opacity:.9}
+.ph{position:relative;width:230px;height:400px;margin:auto;border:6px solid #111;border-radius:34px;overflow:hidden;background:linear-gradient(#ff6b5e 0,#ffd166 45%,#4fc98a 75%);color:#111;font-weight:800;text-align:center}
+.ph span{position:absolute;inset-inline:0;font-size:16px}
+.ph nav{position:absolute;bottom:0;inset-inline:0;background:#fff;display:flex;justify-content:space-around;padding:8px}
+.ph nav b{background:#14213D;border-radius:50%;width:12px;height:12px}
+#nv{position:fixed;bottom:0;inset-inline:0;background:var(--bg);border-top:1px solid var(--line);display:flex;gap:10px;justify-content:center;align-items:center;padding:10px 12px calc(10px + env(safe-area-inset-bottom,0px));z-index:9}
+#nv button{border:0;background:var(--o);color:#111;font-weight:800;border-radius:14px;min-width:96px;height:48px;font-size:18px}
+#nv #fs,#nv #sz{background:var(--card);color:var(--ink);border:2px solid var(--line);min-width:48px}
+#ct{font-weight:800;min-width:70px;text-align:center}
+#toast{position:fixed;top:20px;left:50%;transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:4px 18px;border-radius:999px;font-weight:600;z-index:20;opacity:0;transition:.2s}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div id="bar"><i id="pg"></i></div>
+<div id="toast" role="status"></div>
+<main id="deck">
+
+<section class="s" data-t="البداية"><div class="hero">
+<p style="font:800 28px Cairo;color:var(--o);direction:ltr;text-align:right">COLOR THEORY</p>
+<h1>نظرية الألوان</h1>
+<p style="font-size:26px;color:var(--ink)">هل فعلًا للألوان معاني ومدلولات؟<br>وهل فعلًا بتأثر على قراراتنا؟</p>
+<div class="sw" style="margin-top:24px"><span style="background:#E02020"></span><span style="background:#FF7A1A"></span><span style="background:#FFC800"></span><span style="background:#22A055"></span><span style="background:#2B6FE8"></span><span style="background:#7B4BD6"></span><span style="background:#111"></span></div>
+<p style="margin-top:24px">دوس «التالي» أو الأسهم على الكيبورد.</p></div></section>
+
+<section class="s" data-t="معاني الألوان"><h2 class="hd">معاني الألوان</h2>
+<p>الألوان بتتقسم حسب حرارتها: دافئة وباردة ومتعادلة. اختار لون وشوف.</p>
+<div class="chs" id="cg"></div><div class="chs" id="cl"></div>
+<div class="row"><div><div class="g3" id="sh"></div><div class="hex" id="shx" style="margin-top:8px;max-width:300px">دوس على أي درجة</div></div>
+<div class="card" id="cd"></div></div></section>
+
+<section class="s" data-t="لعبة"><h2 class="hd">لعبة: أنهي لون يناسب؟</h2><p>اختار اللون الأنسب لكل موقف، وشوف السبب.</p><div id="gm"></div></section>
+
+<section class="s" data-t="اللون والقرار"><h2 class="hd">اللون بيأثر على قرارك</h2><p>نفس المنتج بنفس السعر. غيّر اللون وشوف الإحساس بيتغير إزاي.</p>
+<div class="row"><div><div class="card" id="pd" style="text-align:center;transition:background .3s"><p class="q" id="pt" style="font-size:30px">ساعة ذكية</p><p style="color:var(--ink);font-weight:600">1200 جنيه · شحن مجاني</p><button id="pb" style="border:0;border-radius:14px;padding:8px 30px;font-weight:800;font-size:20px;color:#fff;min-height:48px">اشتري الآن</button></div><div class="sw" id="pc" style="margin-top:14px;justify-content:center"></div></div>
+<div class="card"><p class="q" id="pf">اختار لون الزر</p><p id="pn"></p></div></div>
+<p class="sub">إشارة المرور: الألوان بتتكلم من غير كلام</p>
+<div class="row"><div style="display:flex;gap:14px;justify-content:center;flex:0 1 220px" id="tl"></div><div class="card"><p class="q" id="tm">دوس على لمبة</p></div></div></section>
+
+<section class="s" data-t="RGB"><h2 class="hd">كل الألوان من تلاتة</h2>
+<p>كل الألوان على الشاشة متكوّنة من الأحمر والأخضر والأزرق (R, G, B).</p>
+<div class="row"><div><div class="rgbv"><i id="cR" style="background:#f00;top:2%;left:21%"></i><i id="cG" style="background:#0f0;top:36%;left:4%"></i><i id="cB" style="background:#00f;top:36%;left:38%"></i></div>
+<div class="chs" style="justify-content:center" id="rt"><button class="ch" data-k="0" aria-pressed="true">أحمر</button><button class="ch" data-k="1" aria-pressed="true">أخضر</button><button class="ch" data-k="2" aria-pressed="true">أزرق</button></div></div>
+<div><div class="sl"><span>أحمر</span><span id="vR"></span></div><input type="range" id="rR" max="255" aria-label="أحمر">
+<div class="sl"><span>أخضر</span><span id="vG"></span></div><input type="range" id="rG" max="255" aria-label="أخضر">
+<div class="sl"><span>أزرق</span><span id="vB"></span></div><input type="range" id="rB" max="255" aria-label="أزرق">
+<div style="height:90px;border-radius:18px;margin-top:12px;border:1px solid var(--line)" id="rs"></div><div class="hex" id="rx"></div><p class="q" id="rn" style="text-align:center"></p></div></div></section>
+
+<section class="s" data-t="Hue / Saturation / Value"><h2 class="hd">إيه الفرق بين؟</h2>
+<div class="row"><div class="card"><b>Hue</b> درجة اللون نفسه (أحمر، أصفر، أزرق).<br><b>Saturate</b> زوّد التشبّع: اللون يبقى أحيّ.<br><b>Desaturate</b> قلّل التشبّع: يقرب من الرمادي.<br><b>Value</b> السطوع: من الغامق للفاتح.</div>
+<div><div class="sl"><span>Hue</span><span id="vH"></span></div><input type="range" id="rH" max="359" value="355" aria-label="Hue"></div></div>
+<div class="row"><div><p class="q">Saturation ← ، Value ↓</p><div id="hv" style="display:grid;grid-template-columns:repeat(6,1fr);gap:5px;max-width:380px"></div><div class="hex" id="hvx" style="margin-top:6px">دوس على مربع</div></div>
+<div id="st"></div></div></section>
+
+<section class="s" data-t="عجلة الألوان"><h2 class="hd">تركيب وتنسيق الألوان</h2>
+<p>دوس على العجلة (Color Wheel) واختار لون، واختار طريقة التنسيق.</p>
+<div class="row"><div id="whl" role="img" aria-label="عجلة الألوان"></div>
+<div><div class="chs" id="hm"><button class="ch" data-m="0" aria-pressed="true">متجاورة</button><button class="ch" data-m="1" aria-pressed="false">متكاملة</button><button class="ch" data-m="2" aria-pressed="false">ثلاثية</button></div>
+<p id="hn" style="color:var(--ink);font-weight:600"></p><div class="pal" id="pl"></div></div></div>
+<p class="sub">لوحات من الطبيعة</p><div class="row" id="nat"></div>
+<p class="sub">مواقع تقترح لك لوحات جاهزة</p><div class="chs"><a class="ch" href="https://www.canva.com/colors/color-palette-generator/" target="_blank" rel="noopener" style="text-decoration:none">CANVA.COM</a><a class="ch" href="https://colormind.io" target="_blank" rel="noopener" style="text-decoration:none">COLORMIND</a><a class="ch" href="https://colorhunt.co" target="_blank" rel="noopener" style="text-decoration:none">COLORHUNT</a></div></section>
+
+<section class="s" data-t="التباين"><h2 class="hd">فاحص التباين</h2><p>هل النص بيتقرا؟ المعيار العالمي WCAG بيطلب 4.5 على 1 للنص العادي.</p>
+<div class="row"><div><div style="display:flex;gap:18px;align-items:center"><label>النص <input type="color" id="cf" value="#111827"></label><label>الخلفية <input type="color" id="cb" value="#ffffff"></label></div>
+<div class="chs"><button class="ch" data-p="#111827,#ffffff">أسود على أبيض</button><button class="ch" data-p="#FFC800,#ffffff">أصفر على أبيض</button><button class="ch" data-p="#ffffff,#2B6FE8">أبيض على أزرق</button><button class="ch" data-p="#b3b8c4,#ffffff">رمادي فاتح</button></div></div>
+<div><div class="paper" id="cp" style="font-size:24px;font-weight:600">نص تجريبي بيتقرا إزاي؟</div><p class="q" id="cv"></p></div></div></section>
+
+<section class="s" data-t="عائلات الخطوط"><h2 class="hd">عائلات الخطوط</h2>
+<div class="row"><div class="spec" style="font:400 24px/1.6 'EB Garamond',serif;direction:ltr;text-align:left">Adobe Jenson is an <i>Old Style</i> serif typeface<small>قديم (Old Style)</small></div>
+<div class="spec" style="font:400 24px/1.6 'Libre Baskerville',serif;direction:ltr;text-align:left">Baskerville is a <i>Transitional</i> serif typeface<small>انتقالي (Transitional)</small></div>
+<div class="spec" style="font:400 24px/1.6 'Bodoni Moda',serif;direction:ltr;text-align:left">Didot is a <b>Modern</b> serif typeface<small>حديث (Modern)</small></div></div>
+<div style="background:#0B5B6B;border-radius:20px;padding:20px;margin-top:20px;color:#F5877A;font-family:Montserrat;text-align:center;font-size:34px;line-height:1.5;direction:ltr"><div>Regular</div><div style="font-style:italic">Italic</div><div style="font-weight:800">Strong</div><div style="font-weight:800;font-style:italic">Emphasis</div></div></section>
+
+<section class="s" data-t="أولوية القراءة"><h2 class="hd">أولوية القراءة</h2><p>أنهي نص أسهل في القراءة؟ دوس عليه.</p>
+<div class="row" id="rd"><div class="card" data-r="1" style="font:800 15px/1.2 Montserrat;direction:ltr;cursor:pointer;letter-spacing:-.3px">1. Call me Ishmael. Some years ago, never mind how long precisely, having little or no money in my purse, and nothing particular to interest me on shore, I thought I would sail about a little and see the watery part of the world.</div>
+<div class="card" data-r="2" style="font:400 15px/1.7 Montserrat;direction:ltr;cursor:pointer">2. Call me Ishmael. Some years ago, never mind how long precisely, having little or no money in my purse, and nothing particular to interest me on shore, I thought I would sail about a little and see the watery part of the world.</div></div>
+<p class="q" id="rf"></p>
+<p class="sub">خطين أو تلاتة بالكتير</p><div class="chs" id="fp"><button class="ch" data-v="0" aria-pressed="true">أربعة خطوط</button><button class="ch" data-v="1" aria-pressed="false">خطين أو تلاتة</button></div>
+<div class="paper" id="fpv"></div></section>
+
+<section class="s" data-t="الخط العربي"><h2 class="hd">معاني الخطوط العربية</h2><p>اكتب أي جملة وشوفها. وفكّر: جمال ولا وضوح؟</p>
+<input type="text" id="ft" value="تصميم سهل، تجربة أجمل" aria-label="اكتب جملة">
+<div class="spec"><b>الرقعة</b><div class="big" dir="rtl" style="font-family:'Aref Ruqaa';text-align:right" data-f>تصميم سهل، تجربة أجمل</div><small>سريعة وودودة، للعناوين القصيرة.</small></div>
+<div class="spec"><b>النسخ</b><div class="big" dir="rtl" style="font-family:'Noto Naskh Arabic';text-align:right" data-f>تصميم سهل، تجربة أجمل</div><small>الأوضح، للنصوص الطويلة.</small></div>
+<div class="spec"><b>الثلث (عينة تقريبية)</b><div class="big" dir="rtl" style="font-family:Katibeh;text-align:right" data-f>تصميم سهل، تجربة أجمل</div><small>فخم ومزخرف، لعنوان واحد كبير.</small></div>
+<div class="spec"><b>الفارسي (عينة تقريبية)</b><div class="big" dir="rtl" style="font-family:'Noto Nastaliq Urdu';text-align:right;line-height:2.4" data-f>تصميم سهل، تجربة أجمل</div><small>انسيابي ومائل، جميل للفن وتعبان على شاشة صغيرة.</small></div></section>
+
+<section class="s" data-t="اللغة المرئية"><h2 class="hd">اللغة المرئية</h2>
+<div class="row"><div class="card"><p class="q">التنظيم</p><p>ترتيب العناصر بحيث العين تعرف تمشي فين.</p></div><div class="card"><p class="q">مصطلحات اللغة</p><p>العناصر اللي الناس اتعودت عليها: أزرار، قوايم، خرايط، أيقونات.</p></div><div class="card"><p class="q">الاتصال الفعال</p><p>الشاشة بتكلّم المستخدم وتقوله يعمل إيه.</p></div></div>
+<p class="sub">التنظيم: خمس نقاط</p><div class="opts" id="g5"></div></section>
+
+<section class="s" data-t="المحاذاة"><h2 class="hd">المحاذاة</h2><p>قلّل عدد خطوط المحاذاة. اختار تصميم وشوف الخطوط.</p>
+<div class="chs" id="am"><button class="ch" data-a="0" aria-pressed="true">Good alignment</button><button class="ch" data-a="1" aria-pressed="false">Poor alignment</button><button class="ch" data-a="2" aria-pressed="false">Mixed alignment</button></div>
+<label style="font-weight:600"><input type="checkbox" id="al_t" checked style="width:22px;height:22px;accent-color:var(--o)"> اعرض خطوط المحاذاة</label>
+<div id="al" style="margin-top:12px"></div><p class="q" id="an" style="text-align:center"></p></section>
+
+<section class="s" data-t="التناسق والتناغم"><h2 class="hd">التناسق والثبات والتناغم</h2><p>الأيقونات لازم تبقى من نفس العيلة.</p>
+<div class="chs"><button class="ch" data-i="0" aria-pressed="true">غلط</button><button class="ch" data-i="1" aria-pressed="false">مظبوط</button></div>
+<div class="card" id="ic" style="display:flex;justify-content:space-around;align-items:center;min-height:170px;background:#E6F1FB"></div></section>
+
+<section class="s" data-t="التجميع والنظافة"><h2 class="hd">التجميع والنظافة</h2><p>صنّف وجمّع اللي له علاقة، وتجنب الاكتظاظ. شغّل التعديلات واحدة واحدة.</p>
+<div class="row"><div class="mock" id="fm"><div class="t">تسجيل</div><div class="l">الاسم</div><div class="f">اكتب اسمك</div><div class="l">الموبايل</div><div class="f">01xxxxxxxxx</div><button class="go">سجّل</button></div>
+<div class="tg"><label><input type="checkbox" data-c="a">خلّي العنوان والزر هم الأبرز</label><label><input type="checkbox" data-c="b">زوّد المسافات وقرّب الاسم من حقله</label><label><input type="checkbox" data-c="c">قوّي اللون</label><label><input type="checkbox" id="sq">اختبار قفل العين</label><p class="q" id="fx"></p></div></div></section>
+
+<section class="s" data-t="اللمس والتنقل"><h2 class="hd">مناطق اللمس وسهولة التنقل</h2><p>الإبهام بيوصل بسهولة لتحت. الأخضر سهل، والأحمر صعب.</p>
+<div class="row"><div class="ph"><span style="top:10px">صعب الوصول</span><span style="top:44%">متوسط</span><span style="bottom:58px">سهل: حط الأهم هنا</span><nav><b></b><b></b><b></b><b></b></nav></div>
+<div><div class="sl"><span>حجم الزر</span><span id="vt"></span></div><input type="range" id="rt" min="20" max="72" value="24" aria-label="حجم الزر"><div style="text-align:center;margin-top:14px"><button id="ht" style="border:0;border-radius:14px;background:var(--o);color:#111;font-weight:800">اضغط</button></div><p class="q" id="tv" style="text-align:center"></p><p>الإرشادات الشائعة بتوصي بحوالي 44 إلى 48 نقطة على الأقل.</p></div></div></section>
+
+<section class="s" data-t="اختبار"><h2 class="hd">اختبر نفسك</h2><p class="q" id="sc"></p><div id="qz"></div></section>
+
+<section class="s" data-t="الخلاصة"><h2 class="hd">الخلاصة</h2>
+<div class="row"><div class="card"><p class="q">الألوان</p><p>دافئة وباردة ومتعادلة. لكل لون معنى، والثقافة والسياق بيغيّروه. كل الألوان من R وG وB، وتتحكم فيها بالدرجة والتشبّع والسطوع.</p></div>
+<div class="card"><p class="q">الخطوط</p><p>خطين أو تلاتة بالكتير، والوضوح قبل الجمال، والزخرفة للعناوين.</p></div>
+<div class="card"><p class="q">التنظيم</p><p>محاذاة أقل، تناسق، تجميع، نظافة، ومناطق لمس سهلة.</p></div></div></section>
+</main>
+<nav id="nv"><button id="nx">التالي</button><span id="ct"></span><button id="pv">السابق</button><button id="sz" aria-label="تكبير الخط">A+</button><button id="fs" aria-label="ملء الشاشة">⛶</button></nav>
+<script>
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const S=$$('.s');let cur=0,fz=20;
+function go(n){cur=Math.max(0,Math.min(S.length-1,n));S.forEach((s,i)=>s.hidden=i!=cur);$('#pg').style.width=((cur+1)/S.length*100)+'%';$('#ct').textContent=(cur+1)+' / '+S.length;scrollTo(0,0);try{history.replaceState(null,'','#s'+(cur+1))}catch(e){}if(S[cur].dataset.t=='المحاذاة')al()}
+$('#nx').onclick=()=>go(cur+1);$('#pv').onclick=()=>go(cur-1);
+addEventListener('keydown',e=>{if(/INPUT|TEXTAREA/.test(e.target.tagName))return;if(e.key=='ArrowLeft'||e.key=='PageDown')go(cur+1);if(e.key=='ArrowRight'||e.key=='PageUp')go(cur-1)});
+let tx=0;addEventListener('touchstart',e=>tx=e.touches[0].clientX,{passive:true});addEventListener('touchend',e=>{const d=e.changedTouches[0].clientX-tx;if(Math.abs(d)>90&&!/INPUT/.test(e.target.tagName)&&!e.target.closest('#whl'))go(cur+(d<0?1:-1))},{passive:true});
+$('#sz').onclick=()=>{fz=fz>=28?18:fz+4;document.body.style.fontSize=fz+'px'};
+$('#fs').onclick=()=>{try{document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen()}catch(e){}};
+function toast(t){const e=$('#toast');e.textContent=t;e.style.opacity=1;setTimeout(()=>e.style.opacity=0,1400)}
+function cp(t){try{navigator.clipboard.writeText(t).then(()=>toast('اتنسخ '+t),()=>toast(t))}catch(e){toast(t)}}
+const hx=(h,s,l)=>{s/=100;l/=100;const k=n=>(n+h/30)%12,a=s*Math.min(l,1-l),f=n=>l-a*Math.max(-1,Math.min(k(n)-3,Math.min(9-k(n),1)));return '#'+[f(0),f(8),f(4)].map(x=>Math.round(x*255).toString(16).padStart(2,'0')).join('')};
+const hv=(h,s,v)=>{s/=100;v/=100;const f=n=>{const k=(n+h/60)%6;return v-v*s*Math.max(0,Math.min(k,4-k,1))};return '#'+[f(5),f(3),f(1)].map(x=>Math.round(x*255).toString(16).padStart(2,'0')).join('')};
+const lm=c=>{const v=[1,3,5].map(i=>parseInt(c.substr(i,2),16)/255).map(x=>x<=.03928?x/12.92:Math.pow((x+.055)/1.055,2.4));return .2126*v[0]+.7152*v[1]+.0722*v[2]};
+const cr=(a,b)=>{const x=lm(a),y=lm(b);return (Math.max(x,y)+.05)/(Math.min(x,y)+.05)};
+const chips=(sel,fn)=>$$(sel+' .ch').forEach(b=>b.onclick=()=>{$$(sel+' .ch').forEach(x=>x.setAttribute('aria-pressed',x===b));fn(b)});
+
+/* colors */
+const G={w:'دافئة',c:'باردة',n:'متعادلة'};
+const C=[['w','أحمر',0,100,'القوة والطاقة والشغف، والحب والعنف والنار والحرب والغضب والخطر.','في بعض الثقافات مرتبط بالشيطان والجن، وفي الصين بالحياة والسعادة، وفي جنوب أفريقيا بالحداد والحزن.','بيشدّ العين بقوة، فاستخدمه بحرص للخطر والعروض.'],
+['w','برتقالي',28,100,'لون نابض بالحياة والطاقة، ويدل على الأرض والخريف والتغيير بين الفصول والحركة والإبداع.','معناه دافي وودود في أغلب السياقات.','بيلفت الانتباه، لكن مش بقوة الأحمر.'],
+['w','أصفر',50,100,'السعادة والإشراق والأمل. هو الأكتر لمعانًا بين الدافئة.','معناه مبهج، وفي إشارات الخطر معناه تنبيه.','بيتستخدم في لوحات الإعلانات وإشارات الخطر لفترات صغيرة، ومش كخلفية للقراءة لأن النظر فيه طويلًا مزعج.'],
+['c','أخضر',135,70,'الربيع والبدايات الجديدة والانتعاش والنضارة، والشباب والنمو والتجديد.','مرتبط بالطبيعة في ثقافات كتير.','ممكن يدل على قلة الخبرة في التصميم.'],
+['c','أزرق',215,85,'الثقة والمسؤولية والشمول والسعادة والهدوء والسلام. الفاتح بينعش، والغامق بيدل على الثقة والقوة.','في بعض الثقافات بيدل على الحزن، وفي بعضها على التشاؤم.','كتير من الشركات بتستخدمه في الشعارات وبطاقات الأعمال للدلالة على المسؤولية والثقة.'],
+['c','بنفسجي',268,60,'قديمًا كان بيتستخرج من الحلزون وكان غالي الثمن، فارتبط بالطبقات الملكية والغنية. وكمان بزهرة البنفسج: الرومانسية والنعومة.','مكوّن من الأحمر والأزرق، فبياخد معاني من الاتنين: الحب والثقة والرومانسية.','بيدّي إحساس بالرقي والخيال.'],
+['n','أسود',0,0,'الأقوى بين المتعادلة: القوة والأناقة والرسمية.','سلبيًا: الشر والموت والغموض والتعاسة.','سهل يتدمج مع باقي الألوان في التصميم.'],
+['n','أبيض',0,0,'النقاء والشفافية والنظافة والألفة والطهارة. مرتبط بالرعاية الصحية والأطباء والممرضين.','في كتير من الثقافات بيدل على زوال الشر والفرح، وفي كتير غيرها على الموت والحداد.','بيدّي نظافة وسهولة وراحة نفسية، وبيخلّي التصميم يتنفس، وبيقوّي الألوان التانية.'],
+['n','رمادي',0,0,'بين الأبيض والأسود. بيدل على الاتزان والحكمة، وممكن المزاج المحبط.','لون مهني ورسمي.','بيقلّل أهمية بعض النصوص ويدل على الخمول، وبيتستخدم في الشعارات وللظلال.']];
+let gp='w';
+function cg(){$('#cg').innerHTML=Object.keys(G).map(k=>'<button class="ch" data-g="'+k+'" aria-pressed="'+(k==gp)+'">'+G[k]+'</button>').join('');chips('#cg',b=>{gp=b.dataset.g;cl()});cl()}
+function cl(){const L=C.filter(c=>c[0]==gp);$('#cl').innerHTML=L.map((c,i)=>'<button class="ch" data-i="'+C.indexOf(c)+'" aria-pressed="'+(i==0)+'">'+c[1]+'</button>').join('');chips('#cl',b=>cd(+b.dataset.i));cd(C.indexOf(L[0]))}
+function cd(i){const c=C[i],[g,n,h,s]=c;let cells=[];if(g=='n'){const base=n=='أسود'?[4,8,12,16,20,24,28,34,40]:n=='رمادي'?[30,36,42,48,54,60,66,72,78]:[70,76,82,88,92,95,97,99,100];cells=base.map(l=>hx(0,0,l))}else{[[30,s],[50,s],[75,s],[30,s*.6],[50,s*.6],[75,s*.6],[22,s],[62,s],[88,s]].forEach(a=>cells.push(hx(h,a[1],a[0])))}
+$('#sh').innerHTML=cells.map(x=>'<span style="background:'+x+'" data-x="'+x+'" role="button" tabindex="0" aria-label="'+x+'"></span>').join('');$$('#sh span').forEach(e=>e.onclick=()=>{$('#shx').textContent=e.dataset.x.toUpperCase();cp(e.dataset.x.toUpperCase())});
+$('#cd').innerHTML='<p class="q">'+n+'</p><p><b>بيدل على:</b> '+c[4]+'</p><p><b>في الثقافات:</b> '+c[5]+'</p><p><b>في التصميم:</b> '+c[6]+'</p>'}
+cg();
+
+/* game */
+const GM=[['زر «حذف الحساب» نهائيًا',['أحمر','أخضر','بنفسجي'],0,'الأحمر بيدل على الخطر ولفت الانتباه.'],['رسالة «تم الدفع بنجاح»',['برتقالي','أخضر','رمادي'],1,'الأخضر بيدل على النجاح والتجديد.'],['موقع عيادة أطباء',['أسود','أبيض','أحمر'],1,'الأبيض مرتبط بالنظافة والرعاية الصحية.'],['شعار بنك عايز يدّي ثقة ومسؤولية',['أصفر','أزرق','برتقالي'],1,'الأزرق بيدل على الثقة والمسؤولية.'],['لوحة إعلان لازم تتشاف من بعيد',['رمادي','أصفر','أخضر'],1,'الأصفر أكتر لون لمعانًا، بس لفترات قصيرة.'],['علامة مجوهرات فخمة',['أخضر','بنفسجي','رمادي'],1,'البنفسجي مرتبط بالطبقات الملكية والغنية.']];
+let gs=0,ga=0;
+$('#gm').innerHTML=GM.map((q,i)=>'<div class="card" style="margin-top:12px"><p class="q">'+(i+1)+') '+q[0]+'</p><div class="chs">'+q[1].map((o,j)=>'<button class="ch" data-i="'+i+'" data-j="'+j+'">'+o+'</button>').join('')+'</div><p class="fb" id="gf'+i+'"></p></div>').join('')+'<p class="q" id="gsc"></p>';
+$$('#gm .ch').forEach(b=>b.onclick=()=>{const i=+b.dataset.i,f=$('#gf'+i);if(f.dataset.d)return;f.dataset.d=1;ga++;const r=+b.dataset.j==GM[i][2];if(r)gs++;b.setAttribute('aria-pressed',true);f.style.color=r?'var(--ok)':'var(--bad)';f.textContent=(r?'صح! ':'مش بالظبط. ')+GM[i][3];$('#gsc').textContent='نتيجتك: '+gs+' من '+GM.length});
+
+/* decision */
+const PD=[['#E02020','أحمر','طاقة واستعجال: مناسب للعروض والقرار السريع، لكن كتير منه بيوتّر.'],['#FF7A1A','برتقالي','دافي وودود وبيلفت الانتباه من غير عنف الأحمر.'],['#2B6FE8','أزرق','ثقة وهدوء: مناسب لحاجات لازم تحس فيها بالأمان.'],['#22A055','أخضر','نجاح وأمان ونمو: بيقول «كمّل وتمام».'],['#7B4BD6','بنفسجي','رقي وخيال: بيدّي إحساس بالتميّز.'],['#111111','أسود','قوة وأناقة ورسمية: بيدّي إحساس بالفخامة.']];
+$('#pc').innerHTML=PD.map((c,i)=>'<span role="button" tabindex="0" aria-label="'+c[1]+'" style="background:'+c[0]+'" data-i="'+i+'"></span>').join('');
+$$('#pc span').forEach(e=>{const f=()=>{const c=PD[+e.dataset.i];$('#pb').style.background=c[0];$('#pt').style.color=c[0];$('#pf').textContent='زر '+c[1];$('#pn').textContent=c[2]+' والمعنى بيتغير حسب الثقافة والسياق.'};e.onclick=f;e.onkeydown=k=>{if(k.key=='Enter'||k.key==' ')f()}});$('#pc span').click();
+const TL=[['#E02020','أحمر: قف'],['#FFC800','أصفر: استعد وانتبه'],['#22A055','أخضر: امشي']];
+$('#tl').innerHTML=TL.map((t,i)=>'<button aria-label="'+t[1]+'" data-i="'+i+'" style="width:60px;height:60px;border-radius:50%;border:4px solid #333;background:'+t[0]+'"></button>').join('');$$('#tl button').forEach(b=>b.onclick=()=>{$('#tm').textContent=TL[+b.dataset.i][1]+'. اتعلمنا المعنى ده من صغرنا، وبنفهمه من غير ما نقرا.'});
+/* RGB */
+const on=[1,1,1],ids=['R','G','B'];
+const NM={'000':'أسود (من غير ضوء)','100':'أحمر','010':'أخضر','001':'أزرق','110':'أصفر (أحمر + أخضر)','011':'سيان (أخضر + أزرق)','101':'ماجنتا (أحمر + أزرق)','111':'أبيض (التلاتة مع بعض)'};
+ids.forEach(i=>$('#r'+i).value=255);
+function rg(){const v=ids.map(i=>+$('#r'+i).value);ids.forEach((i,k)=>{$('#v'+i).textContent=v[k];$('#c'+i).style.opacity=v[k]/255});const x='#'+v.map(n=>n.toString(16).padStart(2,'0')).join('');$('#rs').style.background=x;$('#rx').textContent='rgb('+v.join(', ')+')  '+x.toUpperCase();$('#rn').textContent=NM[v.map(n=>n>127?1:0).join('')]}
+ids.forEach(i=>$('#r'+i).oninput=rg);
+$$('#rt .ch').forEach(b=>b.onclick=()=>{const k=+b.dataset.k;on[k]=on[k]?0:1;b.setAttribute('aria-pressed',!!on[k]);$('#r'+ids[k]).value=on[k]?255:0;rg()});rg();
+
+/* HSV */
+function hs(){const h=+$('#rH').value;$('#vH').textContent=h+'°';let a='';for(let r=0;r<6;r++)for(let c=0;c<6;c++){const s=c*20,v=100-r*18;a+='<span style="background:'+hv(h,s,v)+';height:46px;border-radius:6px;cursor:pointer" data-x="'+hv(h,s,v)+'"></span>'}$('#hv').innerHTML=a;$$('#hv span').forEach(e=>e.onclick=()=>{$('#hvx').textContent=e.dataset.x.toUpperCase();cp(e.dataset.x.toUpperCase())});
+const bar=(l,f)=>'<p style="margin:10px 0 2px;font-weight:800;color:var(--ink)">'+l+'</p><div style="display:flex;height:52px;border-radius:12px;overflow:hidden">'+[0,1,2,3,4].map(i=>'<div style="flex:1;background:'+f(i)+'"></div>').join('')+'</div>';
+$('#st').innerHTML=bar('Saturation',i=>hv(h,100-i*20,80))+bar('Value',i=>hv(h,85,100-i*20))+bar('Hue',i=>hv((h+i*60)%360,85,90))}
+$('#rH').oninput=hs;hs();
+
+/* wheel */
+let wh=28,wm=0;const HN=['ألوان جنب بعض على العجلة: هادية ومريحة.','لونين متقابلين: تباين قوي، بيخلّي العنصر المهم يبان.','تلات ألوان بمسافات متساوية: حيوية ومرحة.'],OF=[[-30,0,30],[0,180],[0,120,240]];
+function wr(){const o=OF[wm],w=$('#whl');w.innerHTML=o.map(d=>{const a=(wh+d)*Math.PI/180;return '<i style="left:'+(50+34*Math.sin(a))+'%;top:'+(50-34*Math.cos(a))+'%"></i>'}).join('');
+const cs=o.map(d=>hx((wh+d+360)%360,80,52));cs.push(hx(wh,25,94),hx(wh,40,18));$('#pl').innerHTML=cs.map(c=>'<div style="background:'+c+'">'+c.toUpperCase()+'</div>').join('');$$('#pl div').forEach(e=>e.onclick=()=>cp(e.textContent));$('#hn').textContent=HN[wm]}
+function wp(e){const r=$('#whl').getBoundingClientRect(),x=e.clientX-r.left-r.width/2,y=e.clientY-r.top-r.height/2;wh=(Math.atan2(x,-y)*180/Math.PI+360)%360;wr()}
+let wd=0;$('#whl').onpointerdown=e=>{wd=1;wp(e)};addEventListener('pointermove',e=>{if(wd)wp(e)});addEventListener('pointerup',()=>wd=0);
+chips('#hm',b=>{wm=+b.dataset.m;wr()});wr();
+const NT=[['حقل شقائق',['#3F5A0F','#8F9A4F','#EEE88A','#FF8A00','#EE1111']],['بحيرة وضباب',['#6F7B7C','#B5CBCE','#EADFC4','#7F7855','#524F4D']],['غابة بالشمس',['#D9B860','#8F9A3F','#4F7F3A','#7F5A1A','#4A3015']]];
+$('#nat').innerHTML=NT.map(n=>'<div class="card"><p class="q">'+n[0]+'</p><div class="pal">'+n[1].map(c=>'<div style="background:'+c+'">'+c+'</div>').join('')+'</div></div>').join('');$$('#nat .pal div').forEach(e=>e.onclick=()=>cp(e.textContent));
+
+/* contrast */
+function cf(){const f=$('#cf').value,b=$('#cb').value,r=cr(f,b),p=$('#cp');p.style.color=f;p.style.background=b;const v=$('#cv');v.textContent='النسبة '+r.toFixed(1)+' على 1: '+(r>=4.5?'ممتاز للنص العادي':r>=3?'مقبول للنص الكبير بس':'ضعيف، النص هيتعب القارئ');v.style.color=r>=4.5?'var(--ok)':r>=3?'var(--od)':'var(--bad)'}
+$('#cf').oninput=$('#cb').oninput=cf;$$('[data-p]').forEach(b=>b.onclick=()=>{const p=b.dataset.p.split(',');$('#cf').value=p[0].toLowerCase();$('#cb').value=p[1].toLowerCase();cf()});cf();
+
+/* reading + pairing */
+$$('#rd .card').forEach(c=>c.onclick=()=>{const r=c.dataset.r==2;$('#rf').style.color=r?'var(--ok)':'var(--od)';$('#rf').textContent=r?'صح! وزن عادي وسطور مريحة أسهل في القراءة.':'الأول عريض وضاغط، بيتعب العين. جرّب التاني.'});
+const FP=['<h3 style="font:700 28px \'Playfair Display\'">Playfair for Header</h3><p style="font:400 17px \'Josefin Sans\';color:#333">Josefin Sans for Subheader</p><p style="font:400 16px \'Libre Baskerville\';color:#333">Baskerville for body text here.</p><p style="font:400 16px Montserrat;color:#333">Montserrat for body as well.</p>','<h3 style="font:700 28px \'Playfair Display\'">Playfair for Header</h3><p style="font:400 17px Montserrat;color:#333">Montserrat for Subheader</p><p style="font:400 16px \'Libre Baskerville\';color:#333">Baskerville for body text, one clear voice.</p>'];
+function fp(v){$('#fpv').style.direction='ltr';$('#fpv').innerHTML=FP[v]}fp(0);chips('#fp',b=>fp(+b.dataset.v));
+$('#ft').oninput=()=>$$('[data-f]').forEach(e=>e.textContent=$('#ft').value||' ');
+
+/* five points */
+const FV=['المحاذاة وتقليل عدد خطوط المحاذاة','التناسق والثبات والتناغم','التصنيف وجمع العناصر ذات الصلة أو العلاقة','النظافة وتجنب الاكتظاظ','مناطق اللمس وسهولة التنقل'];const TO=[12,13,14,14,15];
+$('#g5').innerHTML=FV.map((t,i)=>'<button data-s="'+TO[i]+'">'+(i+1)+'. '+t+'</button>').join('');$$('#g5 button').forEach(b=>b.onclick=()=>go(+b.dataset.s));
+
+/* alignment */
+const AL=[[[20,20,56,50],[92,20,56,50],[164,20,56,50],[20,82,200,34],[20,128,56,30],[92,128,128,30],[20,170,28,60],[56,170,28,60],[92,170,28,60],[128,170,28,60],[164,170,28,60],[200,170,20,60]],
+[[24,16,56,50],[94,24,56,50],[166,14,56,50],[18,80,196,34],[26,126,56,30],[90,132,126,30],[16,168,28,60],[54,176,28,52],[94,166,28,62],[134,174,28,54],[168,168,28,60],[204,176,20,52]],
+[[10,10,40,40],[120,40,50,40],[184,40,46,40],[14,100,110,34],[140,96,10,36],[20,150,50,32],[90,150,100,30],[14,196,16,44],[60,206,16,36],[110,196,16,44],[140,192,16,44],[200,200,16,40]]];
+let am=0;function al(){const E=$('#al');E.innerHTML=AL[am].map(b=>'<div style="left:'+b[0]+'px;top:'+b[1]+'px;width:'+b[2]+'px;height:'+b[3]+'px"></div>').join('');const xs=new Set(),ys=new Set();AL[am].forEach(b=>{[b[0],b[0]+b[2]].forEach(x=>xs.add(Math.round(x/4)));[b[1],b[1]+b[3]].forEach(y=>ys.add(Math.round(y/4)))});
+if($('#al_t').checked){xs.forEach(x=>E.insertAdjacentHTML('beforeend','<u style="left:'+x*4+'px;top:0;width:1px;height:100%"></u>'));ys.forEach(y=>E.insertAdjacentHTML('beforeend','<u style="top:'+y*4+'px;left:0;height:1px;width:100%"></u>'))}
+const n=xs.size+ys.size;$('#an').textContent='عدد خطوط المحاذاة: '+n+(am==0?'. كل ما قلّت بقى التصميم أنضف.':'. خطوط كتير بتخلّي العين تزهق.')}
+chips('#am',b=>{am=+b.dataset.a;al()});$('#al_t').onchange=al;
+
+/* icons */
+const IC={c:'<circle cx="12" cy="13" r="7"/><path d="M12 9v4l3 2M5 4L3 6M19 4l2 2"/>',h:'<path d="M3 11l9-8 9 8M5 10v10h14V10"/>',m:'<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/>'};
+const ST=[['fill="#111" stroke="#111" stroke-width="3"',64,0],['fill="none" stroke="#bbb" stroke-width="1"',72,0],['fill="none" stroke="#111" stroke-width="2"',60,18]],OK='fill="none" stroke="#111" stroke-width="2"';
+function ico(v){$('#ic').innerHTML=['c','h','m'].map((k,i)=>'<svg viewBox="0 0 24 24" width="'+(v?64:ST[i][1])+'" height="'+(v?64:ST[i][1])+'" '+(v?OK:ST[i][0])+' stroke-linecap="round" stroke-linejoin="round" style="transform:rotate('+(v?0:ST[i][2])+'deg)">'+IC[k]+'</svg>').join('')}
+ico(0);chips('[data-t="التناسق والتناغم"]',b=>ico(+b.dataset.i));
+
+/* fix screen */
+const FM=['مزحومة وصعب تعرف تبدأ منين.','تمام، بقى واضح إيه الأهم.','أحسن، وبقى فيه مساحة تتنفس.','كده الشاشة بقت مريحة وواضحة.'];
+function fx(){const f=$('#fm');let n=0;f.className='mock'+($('#sq').checked?' sq':'');$$('.tg [data-c]').forEach(i=>{if(i.checked){f.classList.add(i.dataset.c);n++}});$('#fx').textContent=FM[n]}
+$$('.tg input').forEach(i=>i.onchange=fx);fx();
+
+/* touch */
+function tc(){const s=+$('#rt').value,b=$('#ht');$('#vt').textContent=s+' نقطة';b.style.width=b.style.height=s+'px';b.style.padding=0;b.textContent=s>=34?'اضغط':'';const ok=s>=44;$('#tv').textContent=ok?'مناسب للإبهام':s>=32?'قريب، لسه صغير':'صغير، هتغلط في الضغط';$('#tv').style.color=ok?'var(--ok)':'var(--bad)'}
+$('#rt').oninput=tc;tc();
+
+/* quiz */
+const QZ=[['أنهي مجموعة ألوان دافئة؟',['أحمر وبرتقالي وأصفر','أزرق وأخضر وبنفسجي','أبيض وأسود ورمادي'],0],['الضوء الأحمر مع الأخضر على الشاشة بيدّي؟',['بنفسجي','أصفر','أبيض'],1],['تقليل الـ Saturation بيعمل إيه؟',['بيقرّب اللون من الرمادي','بيغيّر الأحمر لأزرق','بيخلّيه أغمق بس'],0],['لونين متقابلين على العجلة اسمهم؟',['متجاورة','متكاملة','ثلاثية'],1],['اللون الأنسب كخلفية لقراءة طويلة؟',['أصفر ساطع','أحمر','أبيض أو فاتح مع نص غامق'],2],['كام خط بالكتير في التصميم؟',['خطين أو تلاتة','ستة','كل ما أكتر كل ما أحسن'],0],['قلة خطوط المحاذاة بتدل على؟',['زحمة','تنظيم أحسن','ألوان أكتر'],1],['الأيقونات في نفس الشاشة لازم تبقى؟',['كل واحدة بشكل مختلف','متناسقة في الشكل والسمك','بأحجام عشوائية'],1]];
+let qs=0,qa=0;QZ.forEach((q,i)=>{const d=document.createElement('div');d.className='card';d.style.marginTop='12px';d.innerHTML='<p class="q">'+(i+1)+') '+q[0]+'</p><div class="opts"></div><p class="fb"></p>';q[1].forEach((o,j)=>{const b=document.createElement('button');b.textContent=o;b.onclick=()=>{if(d.dataset.d)return;d.dataset.d=1;qa++;const r=j==q[2];if(r)qs++;b.className=r?'right':'wrong';d.querySelector('.fb').textContent=r?'صح، برافو!':'مش أوي، الصح: '+q[1][q[2]];$('#sc').textContent='نتيجتك: '+qs+' من '+QZ.length};d.querySelector('.opts').appendChild(b)});$('#qz').appendChild(d)});
+go(Math.max(0,(parseInt((location.hash||'').slice(2))||1)-1));
+</script>
+</body>
+</html>
